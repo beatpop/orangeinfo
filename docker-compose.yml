@@ -1,0 +1,31 @@
+nginx:
+  restart: always
+  container_name: orange_nginx
+  image: beatpop/nginxlaravel
+  ports:
+   - "18080:80"
+  volumes_from:
+   - php
+  links:
+   - php
+
+php:
+  restart: always
+  container_name: orange_php
+  image: beatpop/php-fpm:7.2.10
+  volumes:
+   - /mnt/workspace/beatpop/orangeinfo:/var/www/html
+   - /mnt/workspace/beatpop/orangeinfo/storage/data:/var/www/html/storage/data
+  links:
+   - db
+
+db:
+  restart: always
+  container_name: orange_db
+  image: beatpop/mysql:latest
+  ports:
+     - "18081:3306"
+  volumes:
+     - /mnt/workspace/beatpop/data:/var/lib/mysql
+  environment:
+    MYSQL_ALLOW_EMPTY_PASSWORD: 1

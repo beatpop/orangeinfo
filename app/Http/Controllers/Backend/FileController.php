@@ -6,9 +6,14 @@ use App\Models\Backend\Files;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
+/**
+ * 图片上传及查看
+ *
+ * Class FileController
+ * @package App\Http\Controllers\Backend
+ */
 class FileController extends Controller
 {
     /**
@@ -101,7 +106,10 @@ class FileController extends Controller
         }
 
         $fileUrl = $file->file_path;
-        $isDel = unlink($fileUrl);
+        $isDel = true;
+        if (file_exists($fileUrl)) {
+            $isDel = unlink($fileUrl);
+        }
 
         if ($isDel) {
             DB::table('files')->delete($id);

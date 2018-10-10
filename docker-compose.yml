@@ -4,6 +4,8 @@ nginx:
   image: beatpop/nginxlaravel
   ports:
    - "18080:80"
+  volumes:
+   - /mnt/workspace/beatpop/config/nginx/nginx.conf:/etc/nginx/nginx.conf
   volumes_from:
    - php
   links:

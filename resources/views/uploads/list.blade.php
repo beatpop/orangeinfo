@@ -4,6 +4,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
+                <div class="row" style="margin-bottom: 20px;">
+                    <div class="col-md-12" style="border-bottom: 1px solid black;">
+                        <h2> 所有图片列表 </h2>
+                    </div>
+                </div>
                 <div class="row">
                     @if(isset($files) && !empty($files) && count($files))
                         @for($i = 0; $i < count($files); $i++)
@@ -27,13 +32,12 @@
                         </div>
                     @endif
                 </div>
-            </div>
-        </div>
 
-        <div class="row justify-content-start">
-            <div class="col-md-10" style="margin-top: 50px">
-                <br>
-                <a href="{{ url('/file/upload') }}" target="_self"><span>返回重新上传</span></a>
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-12" style="border-top: 1px solid black;">
+                        <a href="{{ url('/file/upload') }}" target="_self"><h5>返回重新上传</h5></a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
